@@ -1,0 +1,9 @@
+{"timestamp":"2025-05-29T18:00:01.948102","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-29T18:00:01.948651","level":"info","event":"Filling up the DagBag from /home/ubuntu/airflow/dags/intraday_ingest_eodhd.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-29T18:00:03.404888Z","level":"info","event":"[OK] AAPL zapisany.","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-29T18:00:04.371582Z","level":"info","event":"[OK] MSFT zapisany.","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-29T18:00:05.090427Z","level":"info","event":"[OK] GOOGL zapisany.","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-29T18:00:06.020631Z","level":"info","event":"[OK] AMZN zapisany.","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-29T18:00:06.916898Z","level":"info","event":"[SKIP] BTC-USD – niepełne dane.","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-29T18:00:07.678040Z","level":"info","event":"[SKIP] ETH-USD – niepełne dane.","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-29T18:00:07.700211","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator"}

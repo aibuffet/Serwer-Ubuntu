@@ -1,0 +1,27 @@
+{"timestamp":"2025-06-01T18:05:04.233892","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-06-01T18:05:04.234450","level":"info","event":"Filling up the DagBag from /home/ubuntu/airflow/dags/sentiment_fetch_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-06-01T18:05:04.558328","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.007s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.578318","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.020s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.585294","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.007s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.590286","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.595566","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.603020","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.007s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.609465","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.006s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.614465","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.619452","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.624645","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.629446","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.634370","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.639158","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.644100","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.649005","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.653626","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.004s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.658577","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.663275","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.004s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.668107","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.672762","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.004s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.677422","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.004s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.682189","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.687205","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.691948","level":"info","event":"POST http://localhost:9200/news_raw/_doc [status:201 duration:0.004s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-06-01T18:05:04.692121","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator"}

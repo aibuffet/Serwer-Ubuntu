@@ -1,0 +1,2 @@
+{"timestamp":"2025-05-28T00:46:49.881605","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-28T00:46:49.888077","level":"info","event":"Filling up the DagBag from /home/ubuntu/airflow/dags/nlp_sentiment_pipeline.py","logger":"airflow.models.dagbag.DagBag"}

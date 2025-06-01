@@ -1,0 +1,13 @@
+{"timestamp":"2025-05-31T14:30:13.430531","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-31T14:30:13.430995","level":"info","event":"Filling up the DagBag from /home/ubuntu/airflow/dags/nlp_sentiment_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-31T14:30:17.514695","level":"info","event":"POST http://localhost:9200/news_processed/_doc [status:201 duration:0.007s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-05-31T14:30:17.530079","level":"info","event":"POST http://localhost:9200/news_processed/_doc [status:201 duration:0.015s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-05-31T14:30:17.535812","level":"info","event":"POST http://localhost:9200/news_processed/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-05-31T14:30:17.540993","level":"info","event":"POST http://localhost:9200/news_processed/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-05-31T14:30:17.546071","level":"info","event":"POST http://localhost:9200/news_processed/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-05-31T14:30:17.551448","level":"info","event":"POST http://localhost:9200/news_processed/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-05-31T14:30:17.558285","level":"info","event":"POST http://localhost:9200/news_processed/_doc [status:201 duration:0.006s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-05-31T14:30:17.563798","level":"info","event":"POST http://localhost:9200/news_processed/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-05-31T14:30:17.569937","level":"info","event":"POST http://localhost:9200/news_processed/_doc [status:201 duration:0.006s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-05-31T14:30:17.574829","level":"info","event":"POST http://localhost:9200/news_processed/_doc [status:201 duration:0.005s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-05-31T14:30:17.575328","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator"}

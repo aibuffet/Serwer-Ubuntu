@@ -1,0 +1,4 @@
+{"timestamp":"2025-05-28T04:14:26.736432","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-28T04:14:26.736884","level":"info","event":"Filling up the DagBag from /home/ubuntu/airflow/dags/ai_signal_learning_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-28T04:14:27.215195Z","level":"info","event":"[OK] Zapisano ai_signal_training_set do DuckDB","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-28T04:14:27.215282","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator"}

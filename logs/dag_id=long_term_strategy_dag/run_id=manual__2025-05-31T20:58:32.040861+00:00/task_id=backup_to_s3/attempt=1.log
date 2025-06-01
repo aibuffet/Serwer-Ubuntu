@@ -1,0 +1,4 @@
+{"timestamp":"2025-05-31T20:58:33.755088","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-31T20:58:33.755507","level":"info","event":"Filling up the DagBag from /home/ubuntu/airflow/dags/long_term_strategy_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-31T20:58:34.284518Z","level":"info","event":"[ERROR] Brak poświadczeń AWS","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-31T20:58:34.284791","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator"}

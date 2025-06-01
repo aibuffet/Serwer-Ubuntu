@@ -1,0 +1,5 @@
+{"timestamp":"2025-05-31T20:10:22.192409","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-31T20:10:22.192832","level":"info","event":"Filling up the DagBag from /home/ubuntu/airflow/dags/long_term_strategy_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-31T20:10:22.474482Z","level":"info","event":"[INFO] Średni sentyment FinBERT: 0.72","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-31T20:10:22.501615Z","level":"info","event":"[OK] Zapisano sygnał długoterminowy: BULLISH","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-31T20:10:22.501984","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator"}

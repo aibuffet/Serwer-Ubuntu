@@ -1,0 +1,4 @@
+{"timestamp":"2025-06-01T14:59:01.647291","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-06-01T14:59:01.647763","level":"info","event":"Filling up the DagBag from /home/ubuntu/airflow/dags/telegram_notify_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-06-01T14:59:02.284557Z","level":"info","event":"[OK] Powiadomienie Telegram wysłane.","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T14:59:02.285131","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator"}

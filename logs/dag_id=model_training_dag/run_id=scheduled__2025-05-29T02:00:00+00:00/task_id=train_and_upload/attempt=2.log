@@ -1,0 +1,6 @@
+{"timestamp":"2025-05-29T02:05:04.561162","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-29T02:05:04.561652","level":"info","event":"Filling up the DagBag from /home/ubuntu/airflow/dags/model_training_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-29T02:05:05.582137Z","level":"info","event":"[INFO] Rekordy przed dropna: 504","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-29T02:05:05.583501Z","level":"info","event":"[INFO] Rekordy po dropna: 372","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-29T02:05:05.895259Z","level":"info","event":"[OK] Model zapisany i wysłany do E2","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-29T02:05:05.896340","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator"}

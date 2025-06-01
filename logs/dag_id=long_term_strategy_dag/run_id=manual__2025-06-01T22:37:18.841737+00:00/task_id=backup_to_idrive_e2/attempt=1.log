@@ -1,0 +1,8 @@
+{"timestamp":"2025-06-01T22:37:22.199013","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-06-01T22:37:22.199410","level":"info","event":"Filling up the DagBag from /home/ubuntu/airflow/dags/long_term_strategy_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-06-01T22:37:22.653285Z","level":"info","event":"DEBUG: ACCESS_KEY= N61heq4JcScOpIbzqrdW","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T22:37:22.653386Z","level":"info","event":"DEBUG: SECRET_KEY= SET","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T22:37:22.653433Z","level":"info","event":"DEBUG: ENDPOINT= g1k4.ie.idrivee2-22.com","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T22:37:22.653472Z","level":"info","event":"DEBUG: BUCKET= ai-buffett-data","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T22:37:22.746266Z","level":"info","event":"[OK] Wysłano do E2: ai-buffett-data/longterm/longterm_signal_history.parquet","chan":"stdout","logger":"task"}
+{"timestamp":"2025-06-01T22:37:22.747523","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator"}

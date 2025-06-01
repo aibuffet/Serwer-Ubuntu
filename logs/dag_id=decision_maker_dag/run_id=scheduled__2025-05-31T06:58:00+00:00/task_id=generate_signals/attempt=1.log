@@ -1,0 +1,4 @@
+{"timestamp":"2025-05-31T06:58:01.381992","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-31T06:58:01.382405","level":"info","event":"Filling up the DagBag from /home/ubuntu/airflow/dags/decision_maker_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-31T06:58:01.695082Z","level":"info","event":"[OK] Zapisano trade_signals w DuckDB","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-31T06:58:01.695381","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator"}

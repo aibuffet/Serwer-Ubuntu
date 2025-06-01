@@ -1,0 +1,4 @@
+{"timestamp":"2025-05-28T23:27:01.503312","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-28T23:27:01.503729","level":"info","event":"Filling up the DagBag from /home/ubuntu/airflow/dags/ranking_filter_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-28T23:27:01.968304Z","level":"info","event":"[OK] Zapisano ranking_filtered w DuckDB","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-28T23:27:01.968629","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator"}

@@ -1,0 +1,5 @@
+{"timestamp":"2025-05-30T03:05:01.644854","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-05-30T03:05:01.645273","level":"info","event":"Filling up the DagBag from /home/ubuntu/airflow/dags/sentiment_scoring_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-05-30T03:05:02.143759","level":"info","event":"POST http://localhost:9200/news_processed/_search [status:200 duration:0.006s]","logger":"elastic_transport.transport"}
+{"timestamp":"2025-05-30T03:05:02.210923Z","level":"info","event":"[OK] Zapisano sentiment_scores do DuckDB","chan":"stdout","logger":"task"}
+{"timestamp":"2025-05-30T03:05:02.211389","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.decorators.python._PythonDecoratedOperator"}
