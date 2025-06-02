@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 import duckdb
 import requests
 
-# KONFIGURACJA
 TELEGRAM_BOT_TOKEN = "7689792641:AAH87fcu7ATDAD0TVeU9DDPCUQb7cfb_wFE"
 TELEGRAM_CHAT_ID = "965669451"
 
@@ -16,45 +15,66 @@ default_args = {
 
 with DAG(
     dag_id="telegram_notify_dag",
-    description="Wysyła tylko ważne sygnały (LONG/SHORT) do Telegrama",
+    description="Wysyła unikalne sygnały z ai_signals_final do Telegrama (zabezpieczenie sent=true)",
     start_date=datetime(2025, 5, 28),
-    schedule="14,29,44,59 * * * *",  # możesz później zmienić na np. 0 9 * * * (raz dziennie)
+    schedule="*/15 * * * *",
     catchup=False,
     default_args=default_args,
     tags=["AI Buffett", "telegram"]
 ) as dag:
 
-    @task(task_id="send_to_telegram")
-    def send_to_telegram():
+    @task(task_id="send_unique_signals")
+    def send_unique_signals():
         con = duckdb.connect("/home/ubuntu/data/market.duckdb")
+
+        # Upewnij się, że kolumna sent istnieje (jeśli nie, dodaj)
+        con.execute("""
+            ALTER TABLE ai_signals_final ADD COLUMN IF NOT EXISTS sent BOOLEAN;
+        """)
+
+        # Pobierz tylko nie-wysłane
         df = con.execute("""
-            SELECT * FROM trade_signals
-            WHERE signal IN ('LONG', 'SHORT')
-            ORDER BY total_score DESC
-            LIMIT 5
+            SELECT * FROM ai_signals_final
+            WHERE sent IS NULL OR sent = FALSE
         """).df()
-        con.close()
 
         if df.empty:
-            print("[INFO] Brak sygnałów LONG/SHORT do wysłania")
+            print("[INFO] Brak nowych sygnałów do wysłania.")
             return
 
-        message = "\u2728 <b>AI Buffett - Sygnały Tradingowe</b> \u2728\n\n"
         for _, row in df.iterrows():
-            message += f"<b>{row['ticker']}</b> | {row['signal']}\n"
-            message += f"Score: {row['total_score']:.2f} | Sentiment: {row.get('finbert_score', 0):.2f}\n\n"
+            ticker = row["ticker"]
+            signal = row["signal"]
+            conf = round(row.get("confidence_score", 0), 2)
+            tp = round(row.get("take_profit", 0), 2)
+            sl = round(row.get("stop_loss", 0), 2)
+            lev = int(row.get("leverage", 1))
+            hold = int(row.get("holding_time", 0))
+            date = row["datetime"]
 
-        url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-        payload = {
-            "chat_id": TELEGRAM_CHAT_ID,
-            "text": message,
-            "parse_mode": "HTML"
-        }
-        response = requests.post(url, json=payload)
+            message = f"""📈 <b>AI Buffett: {signal} na {ticker}</b>\n
+Confidence: <b>{conf}</b>\n🎯 TP: {tp} | 🛡️ SL: {sl}
+⚡ Leverage: {lev}x | ⏱️ Holding: {hold}h"""
 
-        if response.status_code == 200:
-            print("[OK] Powiadomienie Telegram wysłane.")
-        else:
-            print(f"[ERROR] Telegram API: {response.text}")
+            url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+            payload = {
+                "chat_id": TELEGRAM_CHAT_ID,
+                "text": message,
+                "parse_mode": "HTML"
+            }
+            r = requests.post(url, json=payload)
 
-    send_to_telegram()
+            if r.status_code == 200:
+                print(f"[OK] Telegram wysłany: {ticker}")
+                # oznacz jako wysłane
+                con.execute(f"""
+                    UPDATE ai_signals_final
+                    SET sent = true
+                    WHERE ticker = '{ticker}' AND datetime = '{date}'
+                """)
+            else:
+                print(f"[ERROR] Telegram API: {r.text}")
+
+        con.close()
+
+    send_unique_signals()
