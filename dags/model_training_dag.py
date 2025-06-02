@@ -17,58 +17,56 @@ E2_ENDPOINT = "g1k4.ie.idrivee2-22.com"
 BUCKET_NAME = "ai-buffett-data"
 PKL_FILENAME = "model.pkl"
 
-# Domyślne argumenty DAG-a
 default_args = {
     "owner": "airflow",
     "retries": 1,
     "retry_delay": timedelta(minutes=5),
 }
 
-# Definicja DAG-a
 with DAG(
     dag_id="model_training_dag",
-    description="Trenuje model klasyfikacyjny i zapisuje do S3 (IDrive E2)",
+    description="Trening modelu AI na podstawie ai_signal_training_set i upload do E2",
     start_date=datetime(2025, 5, 28),
-    schedule="0 2 * * *",
+    schedule="0 2 * * *",  # codziennie o 2:00
     catchup=False,
     default_args=default_args,
     tags=["AI Buffett", "model"]
 ) as dag:
 
-    @task(task_id="train_and_upload")
-    def train_and_upload():
-        # Połączenie z DuckDB
+    @task(task_id="train_and_upload_model")
+    def train_and_upload_model():
         con = duckdb.connect("/home/ubuntu/data/market.duckdb")
-        df = con.execute("SELECT * FROM feature_data").df()
+        df = con.execute("SELECT * FROM ai_signal_training_set").df()
         con.close()
 
-        # Loguj liczbę rekordów
-        print(f"[INFO] Rekordy przed dropna: {len(df)}")
-        df = df.dropna(subset=["rsi", "macd", "macd_signal", "macd_diff", "atr"])
-        print(f"[INFO] Rekordy po dropna: {len(df)}")
-
-        # Sprawdzenie minimalnej liczby rekordów
-        if df.empty or len(df) < 5:
-            print("[WARN] Za mało danych do treningu – pomijam trenowanie modelu")
+        if df.empty:
+            print("[WARN] Brak danych do treningu.")
             return
 
-        # Tworzenie kolumny target (warunek LONG)
-        df["target"] = df["rsi"].apply(lambda x: 1 if x < 30 else 0)
+        features = [
+            "open", "high", "low", "close", "volume", "rsi", "macd", "macd_signal", "macd_diff", "atr",
+            "rsi_score", "macd_score", "volatility", "total_score", "finbert_score", "compound"
+        ]
 
-        # Dane wejściowe
-        X = df[["rsi", "macd", "macd_signal", "macd_diff", "atr"]]
-        y = df["target"]
+        if not set(features).issubset(set(df.columns)) or "signal" not in df.columns:
+            raise ValueError("[ERROR] Brakuje wymaganych kolumn.")
 
-        # Podział i standaryzacja
-        X_train, _, y_train, _ = train_test_split(X, y, test_size=0.1, random_state=42)
+        df = df.dropna(subset=features + ["signal"])
+        X = df[features]
+        y = df["signal"]
+
+        if X.empty or len(X) < 10:
+            print("[WARN] Za mało danych do treningu.")
+            return
+
+        X_train, _, y_train, _ = train_test_split(X, y, test_size=0.2, random_state=42)
         scaler = StandardScaler()
         X_train_scaled = scaler.fit_transform(X_train)
 
-        # Trening modelu
         model = RandomForestClassifier(n_estimators=100, random_state=42)
         model.fit(X_train_scaled, y_train)
 
-        # Zapis modelu lokalnie
+        # Zapis do pliku
         local_path = f"/tmp/{PKL_FILENAME}"
         joblib.dump((model, scaler), local_path)
 
@@ -83,7 +81,7 @@ with DAG(
 
         s3.upload_file(local_path, BUCKET_NAME, f"models/{PKL_FILENAME}")
         os.remove(local_path)
-        print("[OK] Model zapisany i wysłany do E2")
 
-    # Uruchomienie zadania
-    train_and_upload()
+        print("[OK] Nowy model został wytrenowany i wysłany do E2")
+
+    train_and_upload_model()
