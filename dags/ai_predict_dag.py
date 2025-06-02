@@ -1,3 +1,5 @@
+# /home/ubuntu/airflow/dags/ai_predict_dag.py
+
 from airflow import DAG
 from airflow.decorators import task
 from datetime import datetime, timedelta
@@ -14,7 +16,7 @@ default_args = {
 
 with DAG(
     dag_id="ai_predict_dag",
-    description="Ładowanie modelu AI i generowanie predykcji",
+    description="Ładowanie modelu AI i generowanie predykcji z confidence, TP/SL, leverage",
     start_date=datetime(2025, 5, 28),
     schedule="15 * * * *",
     catchup=False,
@@ -30,7 +32,6 @@ with DAG(
 
         model = joblib.load(model_path)
         con = duckdb.connect("/home/ubuntu/data/market.duckdb")
-
         df = con.execute("SELECT * FROM trade_signals").df()
 
         if df.empty:
@@ -50,12 +51,22 @@ with DAG(
 
         X = latest_df[features]
         y_pred = model.predict(X)
+        y_proba = model.predict_proba(X)
+
         latest_df["signal"] = y_pred
+        latest_df["confidence_score"] = y_proba.max(axis=1)
+
+        # TP = ATR * 3, SL = ATR * 2
+        latest_df["tp"] = latest_df["atr"] * 3
+        latest_df["sl"] = latest_df["atr"] * 2
+
+        # Dźwignia: 0.5 => 1x, 1.0 => 50x
+        latest_df["leverage"] = latest_df["confidence_score"].apply(lambda x: min(1 + (x - 0.5) * 98, 50))
 
         con.execute("CREATE OR REPLACE TABLE ai_predictions AS SELECT * FROM latest_df")
         con.close()
 
-        print("[OK] Zapisano predykcje do DuckDB")
-        print(latest_df[["ticker", "datetime", "signal"]])
+        print("[OK] Zapisano predykcje z scoringiem do DuckDB")
+        print(latest_df[["ticker", "datetime", "signal", "confidence_score", "tp", "sl", "leverage"]])
 
     run_predictions()
